@@ -133,7 +133,7 @@ function waitForButtonPressWeiter() {
 
 //makes Api request to /api/${custom}
 function apirequestGET(url, process = true, callback) {
-  fetch(`http://inka.mywire.org:3000/api/${url}`)
+  fetch(`https://inka.mywire.org:3000/api/${url}`)
   .then(response => response.json())
   .then(data => {
     //Handel answer
@@ -165,7 +165,7 @@ function apirequestGET(url, process = true, callback) {
 function apirequestPOST(url, content) {
   console.log(`Post request to url: ${url}, with content: ${content}`)
   console.log(``)
-  fetch(`http://inka.mywire.org:3000/api/${url}`, {
+  fetch(`https://inka.mywire.org:3000/api/${url}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
