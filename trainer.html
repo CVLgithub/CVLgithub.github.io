@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vokabeltrainer</title>
+  <script src="resources/script.js"></script>
+  <link rel="stylesheet" href="resources/stylesheet.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet2">
+</head>
+<body>
+
+  <div id="MainContainer">
+    <div id="topContainer">
+      <div id="header">
+        <div id="logo">
+          <!-- <img src="img/logo.png" alt="logo"> -->
+        </div>
+        <h1 id="Title">Vokabeltrainer</h1>
+      </div>
+      <div id="bar">
+        <div class="barElement" id="barElement1" onclick="window.location.href='table.html'">Lernstand Anzeigen</div>
+        <!-- Upload button -->
+        <div class="barElement" id="barElement2" onclick="handleSave()">Speichern</div>
+        <div class="barElement" id="barElement3" onclick='handleMainView("settings")'>Einstellungen</div>
+      </div>
+    </div>
+
+    <div id="sub">
+
+      <div id="leftContainer">
+        <div id="choose" onclick="chooseVocab()">Andere Vokabeln Ausw&aumlhlen</div>
+        <div id="vocablistcontainer">
+          <ul id = "vocablist"></ul>
+        </div>
+      </div>
+
+      <div id="viewContainer">
+          <!-- Start Anzeige -->
+          <div id="start">
+            <h1><- Vokabeln ausw&aumlhlen</h1>
+          </div>
+
+          <!-- Abfrage Anzeige -->
+          <div id="abfrage", style="display: none;">
+            <div id="vocablistcontainer", style = "display: none;">
+              <ul id = "vocablist"></ul>
+            </div>
+            <div>
+              <h4 id="lateinValue"> Vokabeln Ausw&aumlhlen  </h4>
+            </div>
+            <div>
+              <div id="Loesung" >  
+                <h4 id="Grammatik"></h4>
+                <h4 id="Deutsch"></h4>
+              </div>
+            </div>
+            <div id="buttons">
+              <button id="weiter", onclick="document.getElementById('right').style.display = 'none'">Loesung Anzeigen</button>
+              <button id="right", style="display: none;">Richtig</button>
+              <button id="false", style="display: none;">Falsch</button>
+            </div>
+            <div id="ScoreMain"></div>
+            <div id="saveReminder", style="display: none;">Time to Save</div>
+          </div>
+
+          <!-- fertig gelernt -->
+          <div id="finishedlearning", style="display: none">
+            fertig
+          </div>
+
+          <!-- settings Anzeige-->
+          <div id="settings", style="display: none">
+            <div onclick="handleMainView('abfrage')"> 
+              zur&uuml;ck
+            </div>
+            <div class="barElement" id="barElement2" onclick="window.location.href='upload.html'">Vokabeln Hochladen</div> 
+            <div id="reminder">
+              - vokabeln bearbeiten
+              (account)
+              - standert vokabeln auswählen
+
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <body id="body">
+  <div id="headContainer">
+    <h1 id="head">Teste deine Vokabeln</h1>
+    <div id="menu", onclick="toggleMenu()", style="cursor: pointer;">
+      <div id="balkenContainer">
+        <img src="svg/bars-3.svg" class="w-6 h-6 text-blue-500">
+        
+        //<div class="balken"></div>
+        //<div class="balken"></div>
+        //<div class="balken"></div>
+      </div>
+      <button class="menu", onclick="window.location.href='table.html'">Lernstand Anzeigen</button>
+      <button class="menu", id="choose", onclick="chooseVocab()">vokabeln auswaehlen
+      </button>
+      <button class="menu", onclick="window.location.href='upload.html'">Vokabeln hochladen</button>
+    </div>
+  </div>
+  <div id="vocablistcontainer", style = "display: none;">
+    <ul id = "vocablist">
+    </ul>
+  </div>
+  <div>
+    <h4 id="lateinValue"> Trying to connect to Database </h4>
+  </div>
+  <div>
+    <div id="Loesung" >  
+      <h4 id="Grammatik"></h4>
+      <h4 id="Deutsch"></h4>
+    </div>
+  </div>
+  <div id="buttons">
+    <button id="weiter", onclick="document.getElementById('right').style.display = 'none'">Loesung Anzeigen</button>
+  	<button id="right", style="display: none;">Richtig</button>
+	  <button id="false", style="display: none;">Falsch</button>
+  </div>
+  <div>
+    <button id="save", onclick="handleSave()">Speichern</button>
+  </div>
+  <div id="ScoreMain"></div>
+</body> -->
+</html>
