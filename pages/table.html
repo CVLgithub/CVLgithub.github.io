@@ -26,7 +26,7 @@
       let api = "vocab"
       cleartable()
       api = `vocab/table/${currenttable}`
-      fetch(`http://inka.mywire.org:3000/api/${api}`)
+      fetch(`https://inka.mywire.org:3000/api/${api}`)
       .then(response => response.json())
       .then(data => {
         // Hier kannst du die Antwort verarbeiten
