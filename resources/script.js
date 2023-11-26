@@ -134,30 +134,28 @@ function waitForButtonPressWeiter() {
 //makes Api request to /api/${custom}
 function apirequestGET(url, process = true, callback) {
   fetch(`https://inka.mywire.org/api/${url}`)
-  .then(response => response.json())
-  .then(data => {
-    //Handel answer
-    console.log(`request to (${url}) made succsesfully`)
-    
-    //call ProcessList function
-    if(process){
-      processList(data)
-    } else {
-      tablenames = data
-      if (callback && typeof callback === 'function') {
-      // Rufe das Callback auf, um anzuzeigen, dass die Funktion beendet ist.
-      console.log("callback")
-      callback();
-    }
-    }
-  })
-  //Error Catch
-  .catch(error => {
-    // Hier kannst du Fehlerbehandlung durchführen
-    console.log("error ->")
-    console.error(error);
-  });
-
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Network response was not ok, status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(`Request to (${url}) made successfully`);
+      
+      if (process) {
+        processList(data);
+      } else {
+        tablenames = data;
+        if (callback && typeof callback === 'function') {
+          console.log("Callback");
+          callback();
+        }
+      }
+    })
+    .catch(error => {
+      console.error("Error ->", error);
+    });
 }
 
 
