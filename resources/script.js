@@ -29,6 +29,15 @@ let active
   }, 4000);
 } */
 
+//login
+function resolve(){
+  const form = document.getElementById("loginForm")
+  const user = form[0].value
+  const password = form[1].value
+  console.log(user + password)
+  apirequestPOST("login",[user,password])
+}
+
 
 //takes list of vocabs as dictionarys and handels it
 async function processList(list) {
