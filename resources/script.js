@@ -187,6 +187,9 @@ function apirequestPOST(url, content) {
         console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
       }
     })
+    .then(data =>{
+      console.log(data)
+    })
     //Eroor catch
     .catch(error => {
       console.error('Fehler beim Senden der Anfrage:', error);
