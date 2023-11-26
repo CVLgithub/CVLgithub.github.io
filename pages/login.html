@@ -54,8 +54,8 @@
     <script>
         function resolve(){
             const form = document.getElementById("loginForm")
-            const user = form[0]
-            const password = form[1]
+            const user = form[0].value
+            const password = form[1].value
             console.log(user + password)
             apirequestPOST("login",[user,password])
         }
