@@ -48,9 +48,39 @@
         }
     </style>
     <script>
-        function submit(){
-            console.log("2")
+        function resolve(){
+            const form = document.getElementById("loginForm")
+            const user = form[0]
+            const password = form[1]
+            console.log(user + password)
+            apirequestPOST("login/",[user,password])
         }
+
+
+        function apirequestPOST(url, content) {
+            console.log(`Post request to url: ${url}, with content: ${content}`)
+            console.log(``)
+            fetch(`https://inka.mywire.org/api/${url}`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(content),
+            })
+                //Response
+                .then(response => {
+                if (response.ok) {
+                    console.log('Post-Abonnement erfolgreich erstellt');
+                } else {
+                    console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
+                }
+                })
+                //Eroor catch
+                .catch(error => {
+                console.error('Fehler beim Senden der Anfrage:', error);
+                });
+
+            }
     </script>
 </head>
 <body>
@@ -59,7 +89,7 @@
     <form id="loginForm">
         <input type="text" name="USERNAME"/>
         <input type="text" name="PASSWORD"/>
-        <button class="buttons", onclick="submit()">Hochladen</button>
+        <button class="buttons", onclick="resolve()">Hochladen</button>
     </form>
 </body>
 </html>
