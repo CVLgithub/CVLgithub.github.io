@@ -57,7 +57,7 @@
             const user = form[0].value
             const password = form[1].value
             console.log(user + password)
-            apirequestPOST("login/test",[user,password])
+            apirequestPOST("login",[user,password])
         }
 
 
@@ -88,14 +88,14 @@
     </script>
 </head>
 <body>
-    <div class="menu", id="backToPage" onclick="window.location.href='trainer.html'">zurück zur Hauptseite</div>
+    <div class="menu" id="backToPage" onclick="window.location.href='trainer.html'">zurück zur Hauptseite</div>
     <h1>Datei-Upload</h1>
     <form id="loginForm">
         <input type="text" name="USERNAME"/>
         <input type="text" name="PASSWORD"/>
 
     </form>
-    <button class="buttons", onclick="resolve()">Hochladen</button>
+    <button class="buttons" onclick="resolve()">Hochladen</button>
 </body>
 </html>
 
