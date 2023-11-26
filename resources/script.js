@@ -194,6 +194,10 @@ function apirequestPOST(url, content) {
 
 }
 
+//toggle login
+let loginState
+loginState = false
+
 
 //Menu
 let menuState
