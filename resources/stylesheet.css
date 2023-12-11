@@ -198,8 +198,20 @@ html, body
 }
 
 #logo{
+   
    margin-left: 15px;
    grid-column:1 / 1;
+   background-image:url('../img/logo.png');
+   background-repeat:no-repeat;
+   background-size: contain; 
+   background-clip: padding-box;
+   width: 140px;
+}
+
+#userIcon{
+   grid-row: 1 / 1;
+   margin-left: 15px;
+   grid-column:4 / 4;
    background-image:url('../img/logo.png');
    background-repeat:no-repeat;
    background-size: contain; 
