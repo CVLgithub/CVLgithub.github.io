@@ -186,8 +186,8 @@ function apirequestPOST(url, content, login = false) {
           console.log('Post-Abonnement erfolgreich erstellt');
                     const responseValue = response.json()
                     responseValue.then(data => {
-                        console.log(data[1])
-                        document.cookie=`hash=${data}`
+                        data = data[1]
+                        document.cookie=`hash=${data}; max-age=86400; path=/;`
                         console.log("cookie created")
                     })
         }
