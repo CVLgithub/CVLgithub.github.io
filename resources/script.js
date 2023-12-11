@@ -32,8 +32,8 @@ let active
 //login
 function resolveLogin(custom){
   const form = document.getElementById("loginForm")
-  const user = form[0].value
-  const password = form[1].value
+  let user = form[0].value
+  let password = form[1].value
   if(custom) {
     user = custom[0]
     password = custom[0]
