@@ -34,7 +34,7 @@ function resolveLogin(custom){
   const form = document.getElementById("loginForm")
   let user
   let password
-  if(!custom) {
+  if(custom) {
     user = custom[0]
     password = custom[0]
   } else {
