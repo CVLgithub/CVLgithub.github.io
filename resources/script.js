@@ -30,7 +30,7 @@ let active
 } */
 
 //login
-function resolve(custom){
+function resolveLogin(custom){
   const form = document.getElementById("loginForm")
   const user = form[0].value
   const password = form[1].value
@@ -337,8 +337,8 @@ function checkLogin() {
   console.log("check cookies")
   const cookieRes = getCookie("hash")
   if (cookieRes[0]) {
-    const hash = cookieRes[1]
-    resolve([])
+    const hash = cookieRes[2]
+    resolveLogin([cookieRes[1], cookieRes[2]])
   } 
   return cookieRes[1]
   
