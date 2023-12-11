@@ -313,7 +313,7 @@ function handleMainView(newView){
 
 function getCookie(cname) {
   let name = cname + "=";
-  let decodedCookie = "hash=test@1eb3da012cf952c58269bd949984611b7884583f20bac1322719580757161e98" //decodeURIComponent(document.cookie);
+  let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for(let i = 0; i <ca.length; i++) {
     let c = ca[i];
