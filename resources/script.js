@@ -176,6 +176,9 @@ function apirequestPOST(url, content, login = false) {
         if (login){
           const responseValue = response.json()
           responseValue.then(data => {
+              if (!data[0]){
+                return console.log("logged in trough cookie")
+              }
               data = data[1]
               if (content[2]){
                 document.cookie=`hash=${data}; max-age=86400; path=/;`
