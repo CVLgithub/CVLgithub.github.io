@@ -10,25 +10,6 @@ let currentMainView = "start"
 let changeInVocab
 let active
 
-//debugg
-/* function showScore(word, score) {
-  var mainDiv = document.getElementById('ScoreMain');
-
-  // Create a new div element
-  var newDiv = document.createElement('div');
-
-  // Set the content of the new div
-  newDiv.textContent = 'Learn Score of "' +  word + '" is: ' + score;
-
-  // Append the new div as a child to the main div
-  mainDiv.appendChild(newDiv);
-
-  // Remove the new div after 4 seconds
-  setTimeout(function() {
-    newDiv.parentNode.removeChild(newDiv);
-  }, 4000);
-} */
-
 //login
 function resolveLogin(custom){
   const form = document.getElementById("loginForm")
@@ -196,8 +177,10 @@ function apirequestPOST(url, content, login = false) {
                     const responseValue = response.json()
                     responseValue.then(data => {
                         data = data[1]
-                        document.cookie=`hash=${data}; max-age=86400; path=/;`
-                        console.log("cookie created")
+                        if (content[2]){
+                          document.cookie=`hash=${data}; max-age=86400; path=/;`
+                          console.log("cookie created")
+                        }
                     })
         }
         console.log('Post-Abonnement erfolgreich erstellt');
