@@ -32,11 +32,14 @@ let active
 //login
 function resolveLogin(custom){
   const form = document.getElementById("loginForm")
-  let user = form[0].value
-  let password = form[1].value
-  if(custom) {
+  let user
+  let password
+  if(!custom) {
     user = custom[0]
     password = custom[0]
+  } else {
+    user = form[0].value
+    password = form[1].value
   }
   console.log(user + password)
   apirequestPOST("login",[user,password],true)
