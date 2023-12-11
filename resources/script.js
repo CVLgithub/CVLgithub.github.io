@@ -323,7 +323,7 @@ function getCookie(cname) {
     if (c.indexOf(name) == 0) {
       const startCookie = 0
       for (let i = 0; i < c.length; i++) {
-        if (str.charAt(i) = "@"){
+        if (c.charAt(i) = "@"){
           startCookie = i
         }
       }
