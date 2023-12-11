@@ -35,7 +35,7 @@ function resolve(){
   const user = form[0].value
   const password = form[1].value
   console.log(user + password)
-  apirequestPOST("login",[user,password])
+  apirequestPOST("login",[user,password],true)
 }
 
 
@@ -169,7 +169,7 @@ function apirequestGET(url, process = true, callback) {
 
 
 //Api Post function
-function apirequestPOST(url, content) {
+function apirequestPOST(url, content, login = false) {
   console.log(`Post request to url: ${url}, with content: ${content}`)
   console.log(``)
   fetch(`https://inka.mywire.org/api/${url}`, {
@@ -182,6 +182,15 @@ function apirequestPOST(url, content) {
     //Response
     .then(response => {
       if (response.ok) {
+        if (login){
+          console.log('Post-Abonnement erfolgreich erstellt');
+                    const responseValue = response.json()
+                    responseValue.then(data => {
+                        console.log(data[1])
+                        document.cookie=`hash=${data}`
+                        console.log("cookie created")
+                    })
+        }
         console.log('Post-Abonnement erfolgreich erstellt');
       } else {
         console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);

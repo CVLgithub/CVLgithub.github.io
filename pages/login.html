@@ -79,6 +79,7 @@
                     responseValue.then(data => {
                         console.log(data[1])
                         document.cookie=`hash=${data}`
+                        console.log("cookie created")
                     })
                     
                 } else {
