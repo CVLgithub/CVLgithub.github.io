@@ -173,7 +173,6 @@ function apirequestPOST(url, content, login = false) {
     .then(response => {
       if (response.ok) {
         if (login){
-          console.log('Post-Abonnement erfolgreich erstellt');
                     const responseValue = response.json()
                     responseValue.then(data => {
                         data = data[1]
@@ -187,9 +186,6 @@ function apirequestPOST(url, content, login = false) {
       } else {
         console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
       }
-    })
-    .then(data =>{
-      console.log(data)
     })
     //Eroor catch
     .catch(error => {
