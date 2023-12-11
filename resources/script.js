@@ -19,7 +19,8 @@ function resolveLogin(custom){
   console.log("custom: " + custom)
   if(custom) {
     user = custom[0]
-    hash = custom[1]
+    password = custom[1]
+    hash = true
   } else {
     user = form[0].value
     password = form[1].value
@@ -173,14 +174,14 @@ function apirequestPOST(url, content, login = false) {
     .then(response => {
       if (response.ok) {
         if (login){
-                    const responseValue = response.json()
-                    responseValue.then(data => {
-                        data = data[1]
-                        if (content[2]){
-                          document.cookie=`hash=${data}; max-age=86400; path=/;`
-                          console.log("cookie created")
-                        }
-                    })
+          const responseValue = response.json()
+          responseValue.then(data => {
+              data = data[1]
+              if (content[2]){
+                document.cookie=`hash=${data}; max-age=86400; path=/;`
+                console.log("cookie created")
+              }
+          })
         }
         console.log('Post-Abonnement erfolgreich erstellt');
       } else {
