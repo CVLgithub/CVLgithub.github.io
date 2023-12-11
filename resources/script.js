@@ -292,11 +292,6 @@ function handleSave(){
   apirequestPOST(url, currentTableData)
 }
 
-function start(){
-  console.log("request ->")
-  apirequestGET("vocab/tables", false, chooseVocab)
-}
-
 function SaveReminder(){
   document.getElementById("saveReminder").style.display = "block"
 }
@@ -312,6 +307,16 @@ function handleMainView(newView){
   
 }
 
+function checkLogin(){
+  console.log("check cookies")
+  console.log(document.cookie)
+}
+
+function start(){
+  checkLogin()
+  console.log("request ->")
+  apirequestGET("vocab/tables", false, chooseVocab)
+}
 start()
 
 /* note: speichern der vokabeln, eigen hochladen
