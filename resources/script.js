@@ -30,10 +30,14 @@ let active
 } */
 
 //login
-function resolve(){
+function resolve(custom){
   const form = document.getElementById("loginForm")
   const user = form[0].value
   const password = form[1].value
+  if(custom) {
+    user = custom[0]
+    password = custom[0]
+  }
   console.log(user + password)
   apirequestPOST("login",[user,password],true)
 }
@@ -307,9 +311,38 @@ function handleMainView(newView){
   
 }
 
-function checkLogin(){
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      const startCookie = 0
+      for (let i = 0; i < str.length; i++) {
+        if (str.charAt(i) = "@"){
+          startCookie = i
+        }
+      }
+      return [true, [c.substring(name.length, i), c.substring(name.length + startCookie, c.length)]];
+    }
+  }
+  return [false,"no cookie"];
+}
+
+function checkLogin() {
   console.log("check cookies")
-  console.log(document.cookie)
+  const cookieRes = getCookie(hash)
+  if (cookieRes[0]) {
+    const hash = cookieRes[1]
+    resolve([])
+  } 
+  return cookieRes[1]
+  
+
 }
 
 function start(){
