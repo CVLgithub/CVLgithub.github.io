@@ -336,6 +336,7 @@ function getCookie(cname) {
 function checkLogin() {
   console.log("check cookies")
   const cookieRes = getCookie("hash")
+  console.log(cookieRes)
   if (cookieRes[0]) {
     const hash = cookieRes[2]
     resolveLogin([cookieRes[1], cookieRes[2]])
