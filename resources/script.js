@@ -313,7 +313,7 @@ function handleMainView(newView){
 
 function getCookie(cname) {
   let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
+  let decodedCookie = "hash=test@1eb3da012cf952c58269bd949984611b7884583f20bac1322719580757161e98" //decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for(let i = 0; i <ca.length; i++) {
     let c = ca[i];
@@ -325,9 +325,10 @@ function getCookie(cname) {
       for (let i = 0; i < c.length; i++) {
         if (c.charAt(i) == "@"){
           startCookie = i
+          console.log(i)
         }
       }
-      return [true, [c.substring(name.length, i), c.substring(name.length + startCookie, c.length)]];
+      return [true, [c.substring(name.length, startCookie), c.substring(startCookie + 1, c.length)]];
     }
   }
   return [false,"no cookie"];
