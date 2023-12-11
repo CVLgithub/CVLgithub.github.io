@@ -35,7 +35,7 @@ function resolveLogin(custom){
   let user
   let password
   let hash = false
-  console.log("custom: " + custom[1])
+  console.log("custom: " + custom)
   if(custom) {
     user = custom[0]
     hash = custom[1]
@@ -344,8 +344,8 @@ function checkLogin() {
   const cookieRes = getCookie("hash")
   console.log(cookieRes)
   if (cookieRes[0]) {
-    const hash = cookieRes[2]
-    resolveLogin([cookieRes[1], cookieRes[2]])
+    const cookieValues = cookieRes[1]
+    resolveLogin([cookieValues[0], cookieValues[1]])
   } 
   return cookieRes[1]
   
