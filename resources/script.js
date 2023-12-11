@@ -34,15 +34,17 @@ function resolveLogin(custom){
   const form = document.getElementById("loginForm")
   let user
   let password
+  let hash = false
+  console.log("custom: " + custom)
   if(custom) {
     user = custom[0]
-    password = custom[0]
+    hash = custom[0]
   } else {
     user = form[0].value
     password = form[1].value
   }
   console.log(user + password)
-  apirequestPOST("login",[user,password],true)
+  apirequestPOST("login",[user,password,hash],true)
 }
 
 
