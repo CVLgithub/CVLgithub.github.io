@@ -35,10 +35,10 @@ function resolveLogin(custom){
   let user
   let password
   let hash = false
-  console.log("custom: " + custom)
+  console.log("custom: " + custom[1])
   if(custom) {
     user = custom[0]
-    hash = custom[0]
+    hash = custom[1]
   } else {
     user = form[0].value
     password = form[1].value
