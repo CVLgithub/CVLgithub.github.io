@@ -175,22 +175,28 @@ html, body
    flex-direction: column;
    min-height: 50px;
    height: 100%;
-   grid-template-rows: min-content auto;
+   /* grid-template-rows: min-content auto; */
 }
 
 #topContainer{
-   height: 15%;
-   display: grid; 
+   /* height: 15%; */
+   display: grid;
+   grid-row-start: 1;
+   grid-row-end: 1;
+   flex-direction: column;
    padding-bottom: 10px;
-   max-height: 150px;
-
+   max-height: 169px;
 }
 
 #header{
    display: grid;
    height: 90%;
+   grid-row-start: 1;
+   grid-row-end: 1;
+   max-height: inherit;
    width: 100%;
-   grid-template-columns: 20% 60% 10%;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+   grid-template-columns: min-content auto;
 }
 
 #logo{
@@ -205,7 +211,6 @@ html, body
 }
 
 #userIcon{
-   size: contain;
    margin-left: 15px;
    grid-column:4 / 4;
    grid-row: 1/1;
@@ -222,9 +227,11 @@ html, body
 }
 
 #bar{
-   height: 10%;
-   grid-row-start: 3;
-   grid-row-end: 3;
+   /* height: 10px; */
+   height: min-content;
+   /* max-height: inherit; */
+   grid-row-start: 2;
+   grid-row-end: 2;
    display: grid;
    grid-template-columns: repeat(3, minmax(0, 1fr));
 }  
@@ -292,6 +299,8 @@ html, body
    flex-wrap: nowrap;
    height: 100%;
    width: 100%;
+   grid-row-start: 2;
+   grid-row-end: 2;
 }
 
 #leftContainer{
