@@ -29,6 +29,13 @@ function resolveLogin(custom){
   apirequestPOST("login",[user,password,hash],true)
 }
 
+//UserData
+function viewUser(){
+  user = getCookie("user")
+  console.log(user)
+  document.getElementById("user").textContent = user
+}
+
 
 //takes list of vocabs as dictionarys and handels it
 async function processList(list) {
@@ -186,7 +193,6 @@ function apirequestPOST(url, content, login = false) {
               document.cookie=`user=${content[0]}; max-age=86400; path=/;`
               console.log("cookie created")
             }
-            document.getElementById("user").textContent = content[0]
           })
         }
         console.log('Post-Abonnement erfolgreich erstellt');
@@ -206,7 +212,7 @@ let loginState
 loginState = false
 
 
-//Menu
+/* //Menu
 let menuState
 menuState = false
 function toggleMenu() {
@@ -221,9 +227,9 @@ function toggleMenu() {
     //hide menu bars
     document.getElementById("balkenContainer").style.display = "none";
     
-    /* buttons.forEach(element => {
-      element.style.display = 'block'
-    });  */
+    //buttons.forEach(element => {
+      //element.style.display = 'block'
+    //}); 
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].style.display = 'block'
     }
@@ -240,6 +246,8 @@ function toggleMenu() {
     }
   }
 }
+ */
+
 
 //Turns Vocab List visible
 function chooseVocab() {
@@ -345,8 +353,6 @@ function start(){
 }
 start()
 
-/* note: speichern der vokabeln, eigen hochladen
-
-
-  zusatz. Mobile Optimieren
+/* note: 
+  auto speichern der vokabeln
 */
