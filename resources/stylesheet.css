@@ -172,14 +172,12 @@ html, body
 
 #MainContainer{
    display: grid;
-   flex-direction: column;
    min-height: 50px;
    height: 100%;
-   grid-template-rows: min-content auto;
+   grid-template-rows: 130px
 }
 
 #topContainer{
-   height: 15%;
    display: grid; 
    padding-bottom: 10px;
    max-height: 150px;
@@ -189,7 +187,6 @@ html, body
 #header{
    display: grid;
    height: 90%;
-   width: 100%;
    grid-template-columns: 20% 60% 10%;
 }
 
@@ -222,7 +219,7 @@ html, body
 }
 
 #bar{
-   height: 10%;
+   height: 28px;
    grid-row-start: 3;
    grid-row-end: 3;
    display: grid;
@@ -236,51 +233,31 @@ html, body
    align-items: center; /* Horizontales Zentrieren */
    background-color: rgb(82, 140, 190);
    height: 100%;
-   margin: 5px;
+   margin: 4px;
    margin-top: 1px;
    border:1px solid black;
+   background-color: rgb(82, 140, 190);
 }
 
 
 #barElement1 {
    grid-column: 1/1;
-   background-color: rgb(82, 140, 190);
 }
 
 #barElement2{
    grid-column: 2/2;
-   background-color: rgb(82, 140, 190);
 }
 
 #barElement3{
    grid-column: 3/3;
-   background-color: rgb(82, 140, 190);
 }
 
-
+.barElement:hover{
+   background-color: rgb(39, 64, 86);
+}
 
 /* bar elements State */
-#barElement1:hover{
-   background-color: rgb(39, 64, 86);
-}
-
-#barElement2:hover{
-   background-color: rgb(39, 64, 86);
-}
-
-#barElement3:hover{
-   background-color: rgb(39, 64, 86);
-}
-
-#barElement1:active{
-   background-color: rgb(19, 127, 220);
-}
-
-#barElement2:active{
-   background-color: rgb(19, 127, 220);
-}   
-
-#barElement3:active{
+.barElement:active{
    background-color: rgb(19, 127, 220);
 }
 
