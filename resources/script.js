@@ -31,7 +31,7 @@ function resolveLogin(custom){
 
 //UserData
 function viewUser(){
-  user = getCookie("user")
+  user = getCookie("user")[1]
   console.log(user)
   document.getElementById("user").textContent = user
 }
@@ -320,7 +320,7 @@ function getCookie(cname) {
       c = c.substring(1);
     }
     if (c.indexOf(name) == 0) {
-      let startCookie = 0
+      let startCookie = -1
       for (let i = 0; i < c.length; i++) {
         if (c.charAt(i) == "@"){
           startCookie = i
