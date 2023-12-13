@@ -187,25 +187,25 @@ html, body
 #header{
    display: grid;
    height: 90%;
-   grid-template-columns: 20% 60% 10%;
+   grid-template-columns: 20% 60%;
 }
 
-#logo{
-   
+#logo{  
    margin-left: 15px;
    grid-column:1 / 1;
    background-image:url('../img/logo.png');
    background-repeat:no-repeat;
    background-size: contain; 
    background-clip: padding-box;
-   width: 140px;
 }
 
 #userIcon{
-   size: contain;
-   margin-left: 15px;
-   grid-column:4 / 4;
-   grid-row: 1/1;
+   grid-column:3 / 3;
+   background-image:url('../resources/svg/userIcon.svg');
+   background-repeat:no-repeat;
+   background-size: contain; 
+   background-clip: padding-box;
+   background-position: right;
 }
 
 
