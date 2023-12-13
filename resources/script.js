@@ -31,7 +31,7 @@ function resolveLogin(custom){
 
 //UserData
 function viewUser(){
-  user = getCookie("user")[1]
+  user = getCookie("user")[1][1].substring(5)
   console.log(user)
   document.getElementById("user").textContent = user
 }
