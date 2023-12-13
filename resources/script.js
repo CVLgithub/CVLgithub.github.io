@@ -183,6 +183,7 @@ function apirequestPOST(url, content, login = false) {
               data = data[1]
               if (content[2]){
                 document.cookie=`hash=${data}; max-age=86400; path=/;`
+                document.cookie=`user=${content[0]}; max-age=86400; path=/;`
                 console.log("cookie created")
               }
           })

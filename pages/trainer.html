@@ -15,7 +15,7 @@
           <!-- <img src="img/logo.png" alt="logo"> -->
         </div>
         <h1 id="Title">Vokabeltrainer</h1>
-        <div id="userIcon" onclick="console.log('login')"></div>
+        <div id="userIcon" onclick="handleMainView('user')"></div>
       </div>
       <div id="bar">
         <div class="barElement" id="barElement1" onclick="window.location.href='table.html'">Lernstand Anzeigen</div>
@@ -92,6 +92,12 @@
                 <input type="text" name="PASSWORD"/>
             </form>
             <button class="buttons" onclick="resolveLogin()">Anmelden</button>
+          </div>
+
+
+          <!-- Account -->
+          <div id="user", style="display: none">
+            user: 
           </div>
       </div>
     </div>
