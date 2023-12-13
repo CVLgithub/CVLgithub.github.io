@@ -177,15 +177,16 @@ function apirequestPOST(url, content, login = false) {
           const responseValue = response.json()
           responseValue.then(data => {
             console.log("data: " + data)
-              if (!data[0]){
-                return console.log("logged in trough cookie")
-              }
-              data = data[1]
-              if (content[2]){
-                document.cookie=`hash=${data}; max-age=86400; path=/;`
-                document.cookie=`user=${content[0]}; max-age=86400; path=/;`
-                console.log("cookie created")
-              }
+            if (!data[0]){
+              return console.log("logged in trough cookie")
+            }
+            data = data[1]
+            if (content[2]){
+              document.cookie=`hash=${data}; max-age=86400; path=/;`
+              document.cookie=`user=${content[0]}; max-age=86400; path=/;`
+              console.log("cookie created")
+            }
+            document.getElementById("user").textContent = content[0]
           })
         }
         console.log('Post-Abonnement erfolgreich erstellt');
