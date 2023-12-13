@@ -187,7 +187,8 @@ html, body
 #header{
    display: grid;
    height: 90%;
-   grid-template-columns: 20% 60%;
+   grid-template-columns: 110px 300px;
+   width: 100%;
 }
 
 #logo{  
