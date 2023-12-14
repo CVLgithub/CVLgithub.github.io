@@ -12,23 +12,26 @@ let active
 let currentUser 
 
 //login
-function resolveLogin(custom){
-  const form = document.getElementById("loginForm")
-  let user
-  let password
-  let hash = false
-  console.log("custom: " + custom)
-  if(custom) {
-    user = custom[0] 
-    password = false
-    hash = custom[1]
-  } else {
-    user = form[0].value
-    password = form[1].value
-    hash = true
-  }
-  console.log(user + password)
-  apirequestPOST("login",[user,password,hash],true)
+async function resolveLogin(custom){
+  return new Promise(async (resolve, reject) => {
+    const form = document.getElementById("loginForm")
+    let user
+    let password
+    let hash = false
+    console.log("custom: " + custom)
+    if(custom) {
+      user = custom[0] 
+      password = false
+      hash = custom[1]
+    } else {
+      user = form[0].value
+      password = form[1].value
+      hash = true
+    }
+    console.log(user + password)
+    await apirequestPOST("login",[user,password,hash],true)
+    resolve()
+  })
 }
 
 //UserData
@@ -174,45 +177,49 @@ function apirequestGET(url, process = true, callback, req = false) {
 
 
 //Api Post function
-function apirequestPOST(url, content, login = false) {
-  console.log(`Post request to url: ${url}, with content: ${content}`)
-  console.log(``)
-  fetch(`https://inka.mywire.org/api/${url}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(content),
-  })
-    //Response
-    .then(response => {
-      if (response.ok) {
-        if (login){
-          const responseValue = response.json()
-          responseValue.then(data => {
-            console.log("data: " + data)
-            if (!data[0]){
-              currentUser = getCookie("user")
-              return console.log("logged in trough cookie")
-            }
-            data = data[1]
-            if (content[2]){
-              document.cookie=`hash=${data}; max-age=86400; path=/;`
-              document.cookie=`user=${content[0]}; max-age=86400; path=/;`
-              console.log("cookie created")
-            }
-          })
-        }
-        console.log('Post-Abonnement erfolgreich erstellt');
-      } else {
-        console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
-      }
+async function apirequestPOST(url, content, login = false) {
+  return new Promise((resolve, reject) => {
+    console.log(`Post request to url: ${url}, with content: ${content}`)
+    fetch(`https://inka.mywire.org/api/${url}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(content),
     })
-    //Eroor catch
-    .catch(error => {
-      console.error('Fehler beim Senden der Anfrage:', error);
-    });
-
+      //Response
+      .then(response => {
+        if (response.ok) {
+          if (login){
+            console.log("try loggin")
+            const responseValue = response.json()
+            responseValue.then(data => {
+              console.log("data: " + data)
+              if (!data[0]){
+                currentUser = getCookie("user")
+                resolve()
+                return console.log("logged in trough cookie")
+                
+              }
+              data = data[1]
+              if (content[2]){
+                document.cookie=`hash=${data}; max-age=86400; path=/;`
+                document.cookie=`user=${content[0]}; max-age=86400; path=/;`
+                resolve()
+                console.log("cookie created")
+              }
+            })
+          }
+          console.log('Post-Abonnement erfolgreich erstellt');
+        } else {
+          console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
+        }
+      })
+      //Eroor catch
+      .catch(error => {
+        console.error('Fehler beim Senden der Anfrage:', error);
+      });
+  })
 }
 
 //toggle login
@@ -318,37 +325,40 @@ function handleMainView(newView){
   
 }
 
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      let startCookie = -1
-      for (let i = 0; i < c.length; i++) {
-        if (c.charAt(i) == "@"){
-          startCookie = i
-          console.log(i)
-        }
+async function getCookie(cname) {
+  return new Promise((resolve, reject) => {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
       }
-      return [true, [c.substring(name.length, startCookie), c.substring(startCookie + 1, c.length)]];
+      if (c.indexOf(name) == 0) {
+        let startCookie = -1
+        for (let i = 0; i < c.length; i++) {
+          if (c.charAt(i) == "@"){
+            startCookie = i
+            console.log(i)
+          }
+        }
+        resolve([true, [c.substring(name.length, startCookie), c.substring(startCookie + 1, c.length)]])
+        return ;
+      }
     }
-  }
-  return [false,"no cookie"];
+    resolve([false,"no cookie"]) ;
+  })
 }
 
 async function checkLogin() {
-  return new Promise((resolve, reject) => {
+  return new Promise(async(resolve, reject) => {
     console.log("check cookies")
-    const cookieRes = getCookie("hash")
+    const cookieRes = await getCookie("hash")
     console.log(cookieRes)
     if (cookieRes[0]) {
       const cookieValues = cookieRes[1]
-      resolveLogin([cookieValues[0], cookieValues[1]])
+      await resolveLogin([cookieValues[0], cookieValues[1]])
     } 
     resolve(cookieRes[0])
     console.log(cookieRes[1]) 
