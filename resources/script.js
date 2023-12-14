@@ -20,6 +20,7 @@ function resolveLogin(custom){
   console.log("custom: " + custom)
   if(custom) {
     user = custom[0] 
+    password = false
     hash = custom[1]
   } else {
     user = form[0].value
