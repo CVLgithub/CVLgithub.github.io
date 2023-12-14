@@ -336,7 +336,7 @@ async function getCookie(cname) {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
-        let startCookie = name.length + 1
+        let startCookie = name.length - 1
         for (let i = 0; i < c.length; i++) {
           if (c.charAt(i) == "@"){
             startCookie = i
