@@ -139,8 +139,13 @@ function waitForButtonPressWeiter() {
 }
 
 //makes Api request to /api/${custom}
-function apirequestGET(url, process = true, callback) {
-  fetch(`https://inka.mywire.org/api/${url}`)
+function apirequestGET(url, process = true, callback, req = false) {
+  let reqUrl = `https://inka.mywire.org/api/${url}` 
+  if (req){
+    reqUrl = reqUrl + "?" + str(req)
+  }
+
+  fetch(reqUrl)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok, status: ${response.status}`);
@@ -148,7 +153,7 @@ function apirequestGET(url, process = true, callback) {
       return response.json();
     })
     .then(data => {
-      console.log(`Request to (${url}) made successfully`);
+      console.log(`Request to (${reqUrl}) made successfully`);
       
       if (process) {
         processList(data);
@@ -333,23 +338,27 @@ function getCookie(cname) {
   return [false,"no cookie"];
 }
 
-function checkLogin() {
-  console.log("check cookies")
-  const cookieRes = getCookie("hash")
-  console.log(cookieRes)
-  if (cookieRes[0]) {
-    const cookieValues = cookieRes[1]
-    resolveLogin([cookieValues[0], cookieValues[1]])
-  } 
-  return cookieRes[1]
-  
-
+async function checkLogin() {
+  return new Promise((resolve, reject) => {
+    console.log("check cookies")
+    const cookieRes = getCookie("hash")
+    console.log(cookieRes)
+    if (cookieRes[0]) {
+      const cookieValues = cookieRes[1]
+      resolveLogin([cookieValues[0], cookieValues[1]])
+    } 
+    resolve(cookieRes[0])
+    console.log(cookieRes[1]) 
+  })
 }
 
-function start(){
-  checkLogin()
-  console.log("request ->")
-  apirequestGET("vocab/tables", false, chooseVocab)
+
+async function start(){
+  if (await checkLogin()){
+    console.log("request ->")
+    apirequestGET("vocab/tables", false, chooseVocab, "testfromWebsite")
+  }
+  
 }
 start()
 
