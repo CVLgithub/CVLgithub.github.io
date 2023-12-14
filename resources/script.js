@@ -9,6 +9,7 @@ let orgList
 let currentMainView = "start"
 let changeInVocab
 let active
+let currentUser 
 
 //login
 function resolveLogin(custom){
@@ -190,6 +191,7 @@ function apirequestPOST(url, content, login = false) {
           responseValue.then(data => {
             console.log("data: " + data)
             if (!data[0]){
+              currentUser = getCookie("user")
               return console.log("logged in trough cookie")
             }
             data = data[1]
@@ -356,7 +358,7 @@ async function checkLogin() {
 async function start(){
   if (await checkLogin()){
     console.log("request ->")
-    apirequestGET("vocab/tables", false, chooseVocab, "testfromWebsite=somevalue")
+    apirequestGET("vocab/tables", false, chooseVocab, "userName=somevalue")
   }
   
 }
