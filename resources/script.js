@@ -356,7 +356,7 @@ async function checkLogin() {
 async function start(){
   if (await checkLogin()){
     console.log("request ->")
-    apirequestGET("vocab/tables", false, chooseVocab, "testfromWebsite")
+    apirequestGET("vocab/tables", false, chooseVocab, "testfromWebsite=somevalue")
   }
   
 }
