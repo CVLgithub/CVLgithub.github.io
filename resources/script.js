@@ -142,7 +142,7 @@ function waitForButtonPressWeiter() {
 function apirequestGET(url, process = true, callback, req = false) {
   let reqUrl = `https://inka.mywire.org/api/${url}` 
   if (req){
-    reqUrl = reqUrl + "?" + str(req)
+    reqUrl = reqUrl + "?" + String(req)
   }
 
   fetch(reqUrl)
