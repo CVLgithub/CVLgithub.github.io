@@ -36,7 +36,7 @@ async function resolveLogin(custom){
 
 //UserData
 function viewUser(){
-  user = getCookie("user")[1][1].substring(5)
+  getCookie("user").then((value) => { user = value[1][1].substring(5)})
   console.log(user)
   document.getElementById("user").textContent = user
 }
@@ -196,7 +196,9 @@ async function apirequestPOST(url, content, login = false) {
             responseValue.then(data => {
               console.log("data: " + data)
               if (!data[0]){
-                currentUser = getCookie("user")
+                getCookie("user").then((value) => {
+                  currentUser = value[1][1]
+                })
                 resolve()
                 return console.log("logged in trough cookie")
                 
