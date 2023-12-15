@@ -194,22 +194,28 @@ async function apirequestPOST(url, content, login = false) {
             console.log("try loggin")
             const responseValue = response.json()
             responseValue.then(data => {
-              console.log("data: " + data)
               if (!data[0]){
-                getCookie("user").then((value) => {
-                  currentUser = value[1][1]
-                })
-                resolve()
-                return console.log("logged in trough cookie")
-                
+                console.log("couldn't login")
+                return
               }
-              data = data[1]
+              console.log("data: " + data)
+              if (data[0]){               
+                resolve()
+                console.log("logged in succesfully")              
+              }
+
               if (content[2]){
+                console.log("creating cookie")
                 document.cookie=`hash=${data}; max-age=86400; path=/;`
                 document.cookie=`user=${content[0]}; max-age=86400; path=/;`
                 resolve()
-                console.log("cookie created")
+                
               }
+
+              getCookie("user").then((value) => {
+                  currentUser = value[1][1]
+                })
+              document.getElementById("loginRes").textContent = "logged in as " + currentUser
             })
           }
           console.log('Post-Abonnement erfolgreich erstellt');
