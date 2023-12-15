@@ -36,7 +36,7 @@ async function resolveLogin(custom){
 
 //UserData
 function viewUser(){
-  getCookie("user").then((value) => { user = value[1][1].substring(5)})
+  getCookie("user").then((value) => { user = value[1][1]})
   console.log(user)
   document.getElementById("user").textContent = user
 }
