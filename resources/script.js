@@ -205,12 +205,16 @@ async function apirequestPOST(url, content, login = false) {
               }
 
               if (content[2]){
-                console.log("creating cookie")
-                document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
-                document.cookie=`user=${content[0]}; max-age=86400; path=/;`
-                resolve()
-                
+                if (data[1] !== "logged in with hash")
+                  console.log("creating cookie")
+                  document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
+                  document.cookie=`user=${content[0]}; max-age=86400; path=/;`
+                  resolve()
               }
+              else{
+                console.log("logged in with hash")
+              }
+              
 
               currentUser = await getCookie("user")
               console.log(currentUser)
