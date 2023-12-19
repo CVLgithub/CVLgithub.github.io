@@ -178,7 +178,7 @@ function apirequestGET(url, process = true, callback, req = false) {
 
 //Api Post function
 async function apirequestPOST(url, content, login = false) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     console.log(`Post request to url: ${url}, with content: ${content}`)
     fetch(`https://inka.mywire.org/api/${url}`, {
       method: 'POST',
@@ -188,12 +188,12 @@ async function apirequestPOST(url, content, login = false) {
       body: JSON.stringify(content),
     })
       //Response
-      .then(response => {
+      .then(async response =>  {
         if (response.ok) {
           if (login){
             console.log("try loggin")
             const responseValue = response.json()
-            responseValue.then(data => {
+            responseValue.then(async data => {
               if (!data[0]){
                 console.log("couldn't login")
                 return
@@ -207,14 +207,12 @@ async function apirequestPOST(url, content, login = false) {
               if (content[2]){
                 console.log("creating cookie")
                 document.cookie=`hash=${data}; max-age=86400; path=/;`
-                document.cookie=`user=${content[0]}; max-age=86400; path=/;`
+                document.cookie=`user=${content[0][1]}; max-age=86400; path=/;`
                 resolve()
                 
               }
 
-              getCookie("user").then((value) => {
-                  currentUser = value[1][1]
-                })
+              currentUser = await getCookie("user")[1][1]
               document.getElementById("loginRes").textContent = "logged in as " + currentUser
             })
           }

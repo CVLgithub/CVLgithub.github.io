@@ -164,10 +164,15 @@
         }
         
 
-        if (await checkLogin()){
+
+        async function ifHandle(){
+            if (await checkLogin()){
             console.log("logged in")
             setURL(`https://inka.mywire.org/api/upload?userName=${currentUser}`)
         }
+        }
+        
+        ifHandle()
     </script>
 </head>
 <body>
