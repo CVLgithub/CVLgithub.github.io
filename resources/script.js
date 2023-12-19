@@ -206,7 +206,7 @@ async function apirequestPOST(url, content, login = false) {
 
               if (content[2]){
                 console.log("creating cookie")
-                document.cookie=`hash=${data}; max-age=86400; path=/;`
+                document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
                 document.cookie=`user=${content[0]}; max-age=86400; path=/;`
                 resolve()
                 
