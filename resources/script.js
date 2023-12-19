@@ -212,7 +212,9 @@ async function apirequestPOST(url, content, login = false) {
                 
               }
 
-              currentUser = await getCookie("user")[1][1]
+              currentUser = await getCookie("user")
+              console.log(currentUser)
+              currentUser = currentUser[1][1]
               document.getElementById("loginRes").textContent = "logged in as " + currentUser
             })
           }
