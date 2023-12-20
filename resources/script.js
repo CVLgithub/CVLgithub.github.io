@@ -355,7 +355,7 @@ async function getCookie(cname) {
             console.log(i)
           }
         }
-        resolve([true, [c.substring(c.indexOf(name), startCookie - 1), c.substring(startCookie + 1, c.length)]])
+        resolve([true, [c.substring(c.indexOf(name), startCookie), c.substring(startCookie + 1, c.length)]])
         return ;
       }
     }
