@@ -146,6 +146,7 @@ function waitForButtonPressWeiter() {
 //makes Api request to /api/${custom}
 function apirequestGET(url, process = true, callback, req = false) {
   let reqUrl = `https://inka.mywire.org/api/${url}` 
+  console.log(`Post request to url: ${reqUrl}, with content: ${req}`)
   if (req){
     reqUrl = reqUrl + "?" + String(req)
   }
