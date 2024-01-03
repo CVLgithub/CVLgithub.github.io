@@ -319,10 +319,11 @@ function cleartable() {
   
 }
 
-function handleSave(){
+async function handleSave(){
   document.getElementById("saveReminder").style.display = "none"
   console.log("request ->")
-  url = `vocab/table/${currentTable}/save`
+  const hash = await getCookie("hash")
+  url = `vocab/table/save?user=${currentUser}&hash=${hash[1][1]}&table=${currentTable}`
   apirequestPOST(url, currentTableData)
 }
 
