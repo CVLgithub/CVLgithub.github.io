@@ -266,7 +266,7 @@ async function processlogin(response, content){
   })
 }
 
-async function processlogin(response){
+async function processRegister(response){
   return new Promise(async (resolve, reject) => {
     document.getElementById("loginRes").textContent = response[1]
     resolve()
