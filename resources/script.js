@@ -12,7 +12,7 @@ let active
 let currentUser 
 
 //login
-async function resolveLogin(){
+async function resolveregister(){
   return new Promise(async (resolve, reject) => {
     const form = document.getElementById("loginForm")
     const user = form[0].value
