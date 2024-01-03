@@ -12,6 +12,17 @@ let active
 let currentUser 
 
 //login
+async function resolveLogin(){
+  return new Promise(async (resolve, reject) => {
+    const form = document.getElementById("loginForm")
+    const user = form[0].value
+    const password = form[1].value
+    console.log(user + password)
+    await apirequestPOST("register",[user,password])
+    resolve()
+  })
+}
+
 async function resolveLogin(custom){
   return new Promise(async (resolve, reject) => {
     const form = document.getElementById("loginForm")
@@ -36,9 +47,10 @@ async function resolveLogin(custom){
 
 //UserData
 function viewUser(){
-  getCookie("user").then((value) => { user = value[1][1]})
+  getCookie("user").then((value) => { user = value[1][1]
   console.log(user)
   document.getElementById("user").textContent = user
+  }) 
 }
 
 
@@ -191,41 +203,15 @@ async function apirequestPOST(url, content, login = false) {
       //Response
       .then(async response =>  {
         if (response.ok) {
+          console.log('Post-Abonnement erfolgreich erstellt');
+
+          //Antwort verarbeiten
           if (login){
             console.log("try loggin")
             const responseValue = response.json()
-            responseValue.then(async data => {
-              if (!data[0]){
-                console.log("couldn't login")
-                document.getElementById("loginRes").textContent = "Error:  " + data[1]
-                return
-              }
-              console.log("data: " + data)
-              if (data[0]){               
-                resolve()
-                console.log("logged in succesfully")              
-              }
-
-              if (content[2]){
-                if (data[1] !== "logged in with hash"){
-                  console.log("creating cookie")
-                  document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
-                  document.cookie=`user=${content[0]}; max-age=86400; path=/;`
-                  resolve()
-                }
-                else{
-                  console.log("logged in with hash")
-                }
-              } 
-              
-
-              currentUser = await getCookie("user")
-              console.log(currentUser)
-              currentUser = currentUser[1][1]
-              document.getElementById("loginRes").textContent = "logged in as " + currentUser
-            })
+            resolve(await login(responseValue))
           }
-          console.log('Post-Abonnement erfolgreich erstellt');
+
         } else {
           console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
         }
@@ -234,6 +220,42 @@ async function apirequestPOST(url, content, login = false) {
       .catch(error => {
         console.error('Fehler beim Senden der Anfrage:', error);
       });
+  })
+}
+
+function login(response){
+  return new Promise(async (resolve, reject) => {
+    console.log("try loggin")
+    response.then(async data => {
+      if (!data[0]){
+        console.log("couldn't login")
+        document.getElementById("loginRes").textContent = "Error:  " + data[1]
+        return
+      }
+      console.log("data: " + data)
+      if (data[0]){               
+        resolve()
+        console.log("logged in succesfully")              
+      }
+
+      if (content[2]){
+        if (data[1] !== "logged in with hash"){
+          console.log("creating cookie")
+          document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
+          document.cookie=`user=${content[0]}; max-age=86400; path=/;`
+          resolve()
+        }
+        else{
+          console.log("logged in with hash")
+        }
+      } 
+      
+
+      currentUser = await getCookie("user")
+      console.log(currentUser)
+      currentUser = currentUser[1][1]
+      document.getElementById("loginRes").textContent = "logged in as " + currentUser
+    })
   })
 }
 

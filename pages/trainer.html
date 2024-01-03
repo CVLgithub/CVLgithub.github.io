@@ -94,7 +94,11 @@
                 <input type="text" name="USERNAME"/>
                 <input type="text" name="PASSWORD"/>
             </form>
-            <button class="buttons" onclick="resolveLogin()" href="trainer.html">Anmelden</button>
+            <div id="loginButtonContainer">
+              <button class="buttons" onclick="resolveLogin()" href="trainer.html">Anmelden</button>
+              <button class="buttons" onclick="resolveRegister()" href="trainer.html">Register</button>
+            </div>
+
             <div id="loginRes"></div>
           </div>
 
