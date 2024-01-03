@@ -12,7 +12,7 @@ let active
 let currentUser 
 
 //login
-async function resolveregister(){
+async function resolveRegister(){
   return new Promise(async (resolve, reject) => {
     const form = document.getElementById("loginForm")
     const user = form[0].value
@@ -208,6 +208,7 @@ async function apirequestPOST(url, content) {
 
 
           //Antwort verarbeiten
+
           if (url == "login"){
             resolve(await processlogin(responseValue, content))
           }
@@ -217,7 +218,6 @@ async function apirequestPOST(url, content) {
           }
 
           
-
         } else {
           console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
         }
