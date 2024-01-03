@@ -48,7 +48,7 @@ async function resolveLogin(custom){
 //UserData
 function viewUser(){
   getCookie("user").then((value) => { 
-    user = value[1][1]
+    const user = value[1][1]
     console.log(user)
     if (user = "o"){
       handleMainView("login")
