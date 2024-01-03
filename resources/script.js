@@ -233,33 +233,31 @@ async function processlogin(response, content){
   return new Promise(async (resolve, reject) => {
     console.log("try loggin")
     response.then(async data => {
-      if (!data[0]){
+      const loginSuccess = data[0]
+      const responseStr = data[1]
+      const responseHash = data[2]
+
+      if (!loginSuccess){
         console.log("couldn't login")
-        document.getElementById("loginRes").textContent = "Error:  " + data[1]
+        document.getElementById("loginRes").textContent = "Error:  " + responseStr
+        resolve()
         return
       }
-      console.log("data: " + data)
-      if (data[0]){               
-        resolve()
-        console.log("logged in succesfully")              
+      console.log("logged in succesfully")          
+                    
+
+      if (responseHash){
+        console.log("creating cookie")
+        document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
+        document.cookie=`user=${content[0]}; max-age=86400; path=/;`
       }
-
-      if (content[2]){
-        if (data[1] !== "logged in with hash"){
-          console.log("creating cookie")
-          document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
-          document.cookie=`user=${content[0]}; max-age=86400; path=/;`
-          resolve()
-        }
-        else{
-          console.log("logged in with hash")
-        }
+      else{
+        console.log("logged in with hash")
       } 
-      
 
-      currentUser = await getCookie("user")
+      currentUser = (await getCookie("user"))[1][1]
       console.log(currentUser)
-      currentUser = currentUser[1][1]
+
       document.getElementById("loginRes").textContent = "logged in as " + currentUser
       resolve()
     })
