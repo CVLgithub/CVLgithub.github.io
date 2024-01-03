@@ -248,7 +248,7 @@ async function processlogin(response, content){
 
       if (responseHash){
         console.log("creating cookie")
-        document.cookie=`hash=${data[1]}; max-age=86400; path=/;`
+        document.cookie=`hash=${responseHash}; max-age=86400; path=/;`
         document.cookie=`user=${content[0]}; max-age=86400; path=/;`
       }
       else{
