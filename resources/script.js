@@ -40,7 +40,7 @@ async function resolveLogin(custom){
       hash = true
     }
     console.log(user + password)
-    await apirequestPOST("login",[user,password,hash],true)
+    await apirequestPOST("login",[user,password,hash])
     resolve()
   })
 }
@@ -190,7 +190,7 @@ function apirequestGET(url, process = true, callback, req = false) {
 
 
 //Api Post function
-async function apirequestPOST(url, content, login = false) {
+async function apirequestPOST(url, content) {
   return new Promise(async (resolve, reject) => {
     console.log(`Post request to url: ${url}, with content: ${content}`)
     fetch(`https://inka.mywire.org/api/${url}`, {
@@ -204,13 +204,19 @@ async function apirequestPOST(url, content, login = false) {
       .then(async response =>  {
         if (response.ok) {
           console.log('Post-Abonnement erfolgreich erstellt');
+          const responseValue = response.json()
+
 
           //Antwort verarbeiten
-          if (login){
-            console.log("try loggin")
-            const responseValue = response.json()
-            resolve(await login(responseValue))
+          if (url == "login"){
+            resolve(await processlogin(responseValue, content))
           }
+
+          if (url == "register"){
+            resolve(await processRegister(responseValue))
+          }
+
+          
 
         } else {
           console.error('Fehler beim Erstellen des Push-Abonnements:', response.status);
@@ -223,7 +229,7 @@ async function apirequestPOST(url, content, login = false) {
   })
 }
 
-function login(response){
+async function processlogin(response, content){
   return new Promise(async (resolve, reject) => {
     console.log("try loggin")
     response.then(async data => {
@@ -255,9 +261,21 @@ function login(response){
       console.log(currentUser)
       currentUser = currentUser[1][1]
       document.getElementById("loginRes").textContent = "logged in as " + currentUser
+      resolve()
     })
   })
 }
+
+async function processlogin(response){
+  return new Promise(async (resolve, reject) => {
+    document.getElementById("loginRes").textContent = response[1]
+    resolve()
+  })
+}
+
+
+
+
 
 //toggle login
 let loginState
