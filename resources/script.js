@@ -256,7 +256,7 @@ async function processlogin(response, content){
       } 
 
       currentUser = (await getCookie("user"))[1][1]
-      console.log(currentUser)
+      console.log("currentuser is set to: " + currentUser)
 
       document.getElementById("loginRes").textContent = "logged in as " + currentUser
       resolve()
