@@ -197,6 +197,7 @@ async function apirequestPOST(url, content, login = false) {
             responseValue.then(async data => {
               if (!data[0]){
                 console.log("couldn't login")
+                document.getElementById("loginRes").textContent = "Error:  " + data[1]
                 return
               }
               console.log("data: " + data)
