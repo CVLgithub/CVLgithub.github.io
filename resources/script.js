@@ -304,7 +304,7 @@ function handleClick(str){
   currentTable = str
   changeInVocab = str
   handleMainView("abfrage")
-  apirequestGET(`vocab/table/${currentTable}`)
+  apirequestGET(`vocab/table?user=${currentUser}&hash=${getCookie("hash")[1][1]}&table=${str}`)
 }
 
 function cleartable() {
@@ -373,7 +373,7 @@ async function checkLogin() {
     console.log(cookieRes)
     if (cookieRes[0]) {
       const cookieValues = cookieRes[1]
-      await resolveLogin([cookieValues[0], cookieValues[1]])
+      await resolveLogin([cookieValues[0].substring(5), cookieValues[1]])
     } 
     resolve(cookieRes[0])
     console.log(cookieRes[1]) 
