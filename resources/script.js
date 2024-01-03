@@ -50,7 +50,7 @@ function viewUser(){
   getCookie("user").then((value) => { 
     const user = value[1][1]
     console.log(user)
-    if (user = "o"){
+    if (user == "o"){
       handleMainView("login")
     }
     else{
