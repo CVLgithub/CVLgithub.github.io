@@ -299,12 +299,13 @@ function chooseVocab() {
  /*  document.getElementById("vocablistcontainer").style.display = "block" */
 }
 
-function handleClick(str){
+async function handleClick(str){
   /* document.getElementById("vocablist").style.display = "none" */
   currentTable = str
   changeInVocab = str
   handleMainView("abfrage")
-  apirequestGET(`vocab/table?user=${currentUser}&hash=${getCookie("hash")[1][1]}&table=${str}`)
+  const hash = await getCookie("hash")
+  apirequestGET(`vocab/table?user=${currentUser}&hash=${hash[1][1]}&table=${str}`)
 }
 
 function cleartable() {
