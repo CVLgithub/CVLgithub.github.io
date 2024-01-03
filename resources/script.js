@@ -422,8 +422,10 @@ async function checkLogin() {
 
 
 async function start(){
-  if (await checkLogin()){
-    console.log("request ->")
+  const loginSuccess = await checkLogin()
+  console.log("startlogin = ", loginSuccess)
+  if (loginSuccess){
+    console.log("start request ->")
     apirequestGET("vocab/tables", false, chooseVocab, `userName=${currentUser}`)
   }
   
