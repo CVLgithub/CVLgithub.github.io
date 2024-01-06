@@ -434,6 +434,8 @@ background-color: aqua;
    text-decoration: none;
    display: block;
  }
+
+ .dropdown-content:active {background-color: #04AA6D;}
  
  /* Change color of dropdown links on hover */
  .dropdown-content a:hover {background-color: #ddd;}
