@@ -446,6 +446,12 @@ async function checkLogin() {
   })
 }
 
+function save(){
+  console.log("saved")
+  handleSave()
+  //autoSave = 0
+}
+
 
 async function start(){
   const loginSuccess = await checkLogin()
@@ -458,6 +464,5 @@ async function start(){
 }
 start()
 
-/* note: 
-  auto speichern der vokabeln
-*/
+//auto save
+let autoSave = setTimeout(save, 60000);
