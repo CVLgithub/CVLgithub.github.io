@@ -187,7 +187,7 @@ html, body
 #header{
    display: grid;
    height: 90%;
-   grid-template-columns: 110px 300px;
+   grid-template-columns: 110px 260px auto 78px;
    width: 100%;
 }
 
