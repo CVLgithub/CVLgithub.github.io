@@ -179,6 +179,8 @@ function apirequestGET(url, process = true, callback, req = false) {
       return response.json();
     })
     .then(data => {
+      
+      if(!data){console.log("SERVER DENIED"); return}
       console.log(`Request to (${reqUrl}) made successfully with data${data}`);
       
       if (process) {
