@@ -201,7 +201,7 @@ html, body
 }
 
 #userIcon{
-   grid-column:3 / 3;
+   grid-column:4 / 4;
    background-image:url('../resources/svg/userIcon.svg');
    background-repeat:no-repeat;
    background-size: contain; 
