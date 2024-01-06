@@ -449,9 +449,15 @@ async function checkLogin() {
 function save(){
   console.log("saved")
   handleSave()
-  //autoSave = 0
 }
 
+function setAutoSave(time){
+  if (time == 0){
+    autoSave = 0
+    return
+  }
+  autoSave = setTimeout(save, time*60000);
+}
 
 async function start(){
   const loginSuccess = await checkLogin()
