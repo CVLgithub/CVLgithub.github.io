@@ -179,7 +179,7 @@ function apirequestGET(url, process = true, callback, req = false) {
       return response.json();
     })
     .then(data => {
-      
+
       if(!data){console.log("SERVER DENIED"); return}
       console.log(`Request to (${reqUrl}) made successfully with data${data}`);
       
@@ -453,6 +453,7 @@ function save(){
   console.log("saved")
   handleSave()
   notifyDiv.innerHTML = "Auto Saved"
+  setTimeout(function(){console.log("delete notification")}, 3000);
 }
 
 function setAutoSave(time){
@@ -475,4 +476,4 @@ async function start(){
 start()
 
 //auto save
-let autoSave = setTimeout(save, 60000);
+let autoSave = setInterval(save, 60000);
