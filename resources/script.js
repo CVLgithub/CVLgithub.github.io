@@ -452,7 +452,7 @@ async function start(){
   console.log("startlogin = ", loginSuccess)
   if (loginSuccess){
     console.log("start request ->")
-    apirequestGET("vocab/tables", false, chooseVocab, `userName=${currentUser}`)
+    apirequestGET("vocab/tables", false, chooseVocab, `userName=${currentUser}&hash=${(await getCookie("hash"))[1][1]}`)
   }
   
 }
