@@ -453,7 +453,7 @@ function save(){
   console.log("saved")
   handleSave()
   notifyDiv.innerHTML = "Auto Saved"
-  setTimeout(function(){console.log("delete notification")}, 3000);
+  setTimeout(function(){console.log("delete notification"); notifyDiv.innerHTML = ""}, 3000);
 }
 
 function setAutoSave(time){
