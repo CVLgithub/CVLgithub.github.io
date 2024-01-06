@@ -179,7 +179,7 @@ function apirequestGET(url, process = true, callback, req = false) {
       return response.json();
     })
     .then(data => {
-      console.log(`Request to (${reqUrl}) made successfully`);
+      console.log(`Request to (${reqUrl}) made successfully with data${data}`);
       
       if (process) {
         processList(data);
@@ -447,8 +447,10 @@ async function checkLogin() {
 }
 
 function save(){
+  const notifyDiv = document.getElementById("notifyHeader")
   console.log("saved")
   handleSave()
+  notifyDiv.innerHTML = "Auto Saved"
 }
 
 function setAutoSave(time){
