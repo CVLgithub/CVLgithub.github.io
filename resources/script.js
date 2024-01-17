@@ -11,7 +11,7 @@ let changeInVocab
 let active
 let currentUser 
 
-//login
+
 async function resolveRegister(){
   return new Promise(async (resolve, reject) => {
     const form = document.getElementById("loginForm")
@@ -59,6 +59,12 @@ function viewUser(){
     }
     
   }) 
+
+  //verify login
+
+  checkLogin()
+
+
 }
 
 
@@ -353,8 +359,8 @@ async function handleClick(str){
   currentTable = str
   changeInVocab = str
   handleMainView("abfrage")
-  const hash = await getCookie("hash")
-  apirequestGET(`vocab/table?user=${currentUser}&hash=${hash[1][1]}&table=${str}`)
+  const hash = (await getCookie("hash"))[1][1]
+  apirequestGET(`vocab/table?user=${currentUser}&hash=${hash}&table=${str}`)
 }
 
 function cleartable() {
@@ -371,8 +377,8 @@ function cleartable() {
 async function handleSave(){
   document.getElementById("saveReminder").style.display = "none"
   console.log("request ->")
-  const hash = await getCookie("hash")
-  url = `vocab/table/save?user=${currentUser}&hash=${hash[1][1]}&table=${currentTable}`
+  const hash = (await getCookie("hash"))[1][1]
+  url = `vocab/table/save?user=${currentUser}&hash=${hash}&table=${currentTable}`
   apirequestPOST(url, currentTableData)
 }
 
@@ -444,7 +450,7 @@ async function checkLogin() {
       await resolveLogin([cookieValues[0].substring(5), cookieValues[1]])
     } 
     resolve(cookieRes[0])
-    console.log(cookieRes[1]) 
+    console.log("console:" + cookieRes[1]) 
   })
 }
 
