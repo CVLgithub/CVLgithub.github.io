@@ -50,7 +50,7 @@
 
     async function handleReq(func){
       const cookieRes = await getCookie("hash")
-      if (cookieReshash[0]){
+      if (cookieRes[0]){
         const hash = cookieRes[1][1]
         const User = cookieRes[1][0].substring(5)
         const ReqAdd = `userName=${user}&hash=${hash}`
