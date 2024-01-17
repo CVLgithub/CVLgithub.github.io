@@ -54,7 +54,7 @@ function viewUser(){
       handleMainView("login")
     }
     else{
-      document.getElementById("user").textContent = user
+      document.getElementById("user").textContent = `logged in as "${user}"`
       handleMainView("account")
     }
     
