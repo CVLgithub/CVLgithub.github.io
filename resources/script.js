@@ -263,7 +263,10 @@ async function processlogin(response, content){
       console.log("logged in succesfully")          
                     
 
-      if (responseHash){
+      if (responseHash){   
+        if (String(responseHash) == "true,logged in with hash")   {
+          console.log("WTF")
+        } 
         console.log("creating cookie")
         document.cookie=`hash=${responseHash}; max-age=86400; path=/;`
         document.cookie=`user=${content[0]}; max-age=86400; path=/;`
@@ -438,8 +441,11 @@ function deleteAllCookies() {
 async function checkLogin() {
   return new Promise(async(resolve, reject) => {
     console.log("check cookies")
+    //gettting hash from cookies
     const cookieRes = await getCookie("hash")
     console.log(cookieRes)
+
+    //trying Login with cookie
     if (cookieRes[0]) {
       const cookieValues = cookieRes[1]
       await resolveLogin([cookieValues[0].substring(5), cookieValues[1]])
