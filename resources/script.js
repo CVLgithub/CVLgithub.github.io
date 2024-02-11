@@ -279,6 +279,7 @@ async function processlogin(response, content){
       console.log("currentuser is set to: " + currentUser)
 
       document.getElementById("loginRes").textContent = "logged in as " + currentUser
+      getTables()
       resolve()
     })
   })
@@ -467,6 +468,10 @@ function setAutoSave(time){
     return
   }
   autoSave = setTimeout(save, time*60000);
+}
+
+async function getTables(){
+  apirequestGET("vocab/tables", false, chooseVocab, `userName=${currentUser}&hash=${(await getCookie("hash"))[1][1]}`)
 }
 
 async function start(){
